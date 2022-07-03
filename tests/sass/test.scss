@@ -1,0 +1,13 @@
+@import "./_sass-inherit";
+
+@include buildInherit(
+  "div", 7,
+  '--var1: inherit(--var2) + "3"',
+  '--var2: calc(inherit(--var1) + inherit(--var2))'
+);
+
+@include buildInherit(
+  ".bob", 7,
+  '--var1: inherit(--var2) + "3"',
+  '--var2: calc(inherit(--var1) + inherit(--var2))'
+);

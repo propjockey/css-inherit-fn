@@ -1,0 +1,27 @@
+/**
+ * css-inherit-fn/depth.css
+ * BSD 2-Clause License
+ * Copyright (c) Jane Ori, PropJockey, 2022
+ */
+.depth:not(.depth .depth),
+.depth .depth .depth:not(.depth .depth .depth .depth),
+.depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth),
+.depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth),
+.depth .depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth),
+.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth) {
+  --depth: calc(var(--io1_depth, 0) + 1);
+  --io2_depth: var(--depth);
+  --depth-odd: 1;
+  --depth-even: 0;
+}
+.depth .depth:not(.depth .depth .depth),
+.depth .depth .depth .depth:not(.depth .depth .depth .depth .depth),
+.depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth),
+.depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth),
+.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth),
+.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth) {
+  --depth: calc(var(--io2_depth, 0) + 1);
+  --io1_depth: var(--depth);
+  --depth-odd: 0;
+  --depth-even: 1;
+}

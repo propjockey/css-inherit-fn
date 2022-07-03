@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro'
+import PJLink from "../components/PJLink.astro"
+import NPMLink from "../components/NPMLink.astro"
+import GitHubLink from "../components/GitHubLink.astro"
+import TwitterLink from "../components/TwitterLink.astro"
+---
+<Layout title="css-inherit-fn mixins from PropJockey">
+  <main>
+    <div aria-hidden="true" class="inlay-decoration" data-augmented-ui="inlay"></div>
+    <div aria-hidden="true" class="border-decoration" data-augmented-ui="border"></div>
+    <div class="logo-wrapper">
+      <img src="/favicon.png" alt="css-inherit-fn logo">
+    </div>
+    <h1>css-inherit-fn</h1>
+    <nav>
+      <PJLink />
+      <NPMLink />
+      <GitHubLink />
+      <TwitterLink />
+    </nav>
+    <p class="instructions">
+      --var: calc(inherit(--var, 0) + 1);<br>
+      Releasing soon!
+    </p>
+  </main>
+</Layout>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    max-height: 2rem;
+  }
+  nav :global(a:hover),
+  nav :global(a:active),
+  nav :global(a:focus) {
+    background: var(--theme_2);
+  }
+  nav :global(a:first-child) {
+    background: transparent;
+    opacity: 0.6;
+    transition: opacity 0.33s linear, filter 0.33s linear;
+    z-index: 9999;
+    will-change: filter;
+  }
+  nav :global(a:first-child:hover) {
+    opacity: 1;
+    filter: brightness(1.5) drop-shadow(0 0 1rem var(--theme_0));
+  }
+  nav :global(a path) {
+    fill: var(--theme_2);
+  }
+  nav :global(a:hover path),
+  nav :global(a:active path),
+  nav :global(a:focus path) {
+    fill: var(--theme_3);
+  }
+  h1 {
+    margin: 1rem 0;
+    text-align: center;
+  }
+  .logo-wrapper {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 2rem;
+    border: 0.25rem solid var(--theme_2);
+    overflow: hidden;
+  }
+  .logo-wrapper img {
+    width: 99%;
+  }
+
+  main {
+    margin: auto;
+    padding: 1.25em;
+    width: var(--main-width);
+    min-height: calc(100vh - 2rem);
+    position: relative;
+    isolation: isolate;
+  }
+  .inlay-decoration,
+  .border-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    --aug-round-tr1: initial;
+    --aug-tr1: 3rem;
+  }
+  .inlay-decoration {
+    --aug-inlay-bg: var(--theme_3);
+    --aug-inlay-all: 0.66rem;
+    --aug-scoop-tl1: initial;
+    --aug-scoop-tl2: initial;
+    --aug-tl1: 2.5rem;
+    --aug-tl2: 2.5rem;
+    --aug-scoop-br1: initial;
+    --aug-scoop-br2: initial;
+    --aug-br1: 2.5rem;
+    --aug-br2: 2.5rem;
+  }
+  .border-decoration {
+    --aug-border-bg: var(--theme_2);
+    --aug-border-all: 0.25rem;
+    --aug-scoop-tl1: initial;
+    --aug-round-tl1: initial;
+    --aug-scoop-tl2: initial;
+    --aug-round-tl2: initial;
+    --aug-tl1: 2.5rem;
+    --aug-tl2: 2.5rem;
+    --aug-scoop-br1: initial;
+    --aug-round-br1: initial;
+    --aug-scoop-br2: initial;
+    --aug-round-br2: initial;
+    --aug-br1: 2.5rem;
+    --aug-br2: 2.5rem;
+  }
+</style>

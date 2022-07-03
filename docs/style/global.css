@@ -1,0 +1,105 @@
+:root,
+.theme-preferred,
+.theme-not-preferred,
+.theme-light,
+.theme-dark {
+  /* all theme color values are DRY, defined here, once only */
+  --theme_0_light: #26004D;
+  --theme_1_light: #7300E6;
+  --theme_2_light: #FB00C3;
+  --theme_3_light: #FFFFFF;
+  --theme_4_light: 7 85% 61%;
+  --theme_0: var(--theme_0_light, #26004D);
+  --theme_1: var(--theme_1_light, #7300E6);
+  --theme_2: var(--theme_2_light, #FB00C3);
+  --theme_3: var(--theme_3_light, #FFFFFF);
+  --theme_4: var(--theme_4_light, 332 82% 41%);
+}
+
+/* Unfortunately, with the previous IACVT spec still implemented for most browsers, */
+/* you have to repeat the internal light vars 3x, but all with initial as the value */
+/* So if the color VALUE changes, it's only updated once, the rest shouldn't change */
+/* See the SUPER DRY version https://codepen.io/propjockey/pen/RwVNybQ?editors=1100 */
+/* (the super dry one only works for browsers with the new IACVT spec implemented.) */
+
+.theme-dark {
+  --theme_0_light: initial;
+  --theme_1_light: initial;
+  --theme_2_light: initial;
+  --theme_3_light: initial;
+  --theme_4_light: initial;
+}
+@media not all and (prefers-color-scheme: light) {
+  :root,
+  .theme-preferred {
+    --theme_0_light: initial;
+    --theme_1_light: initial;
+    --theme_2_light: initial;
+    --theme_3_light: initial;
+    --theme_4_light: initial;
+  }
+}
+@media (prefers-color-scheme: light) {
+  .theme-not-preferred {
+    --theme_0_light: initial;
+    --theme_1_light: initial;
+    --theme_2_light: initial;
+    --theme_3_light: initial;
+    --theme_4_light: initial;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 1rem;
+  font-family: sans-serif;
+  background: var(--theme_1);
+  color: hsl(var(--theme_0));
+}
+body {
+  background: linear-gradient(to bottom right, var(--theme_1), var(--theme_0)) fixed;
+  --main-width: min(100vw - 20px, 60rem);
+  --rail-width: (50% - var(--main-width) / 2);
+  padding-bottom: 10rem;
+  padding-top: 1rem;
+}
+@supports (mix-blend-mode: overlay) {
+  body::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    pointer-events: none;
+    background: url(/assets/noise.png);
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+  }
+}
+
+code {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  color: hsl(var(--theme_3));
+  background-color: hsl(var(--theme_1));
+  border: 1px solid hsl(var(--theme_4));
+}
+code.console::before {
+  content: "$ ";
+}
+code b {
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+  color: hsl(var(--theme_0));
+}

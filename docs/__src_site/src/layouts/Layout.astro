@@ -1,0 +1,31 @@
+---
+import "augmented-ui/augmented-ui.min.css"
+import "css-media-vars/css-media-vars.css"
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+  <link rel="icon" type="image/x-icon" href="/favicon.png" />
+	<title>{title}</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146833088-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-146833088-2');
+  </script>
+  <link rel="stylesheet" href="/style/global.css">
+</head>
+<body>
+	<slot />
+</body>
+</html>

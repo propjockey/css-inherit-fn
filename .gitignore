@@ -1,0 +1,21 @@
+node_modules/
+cypress/
+
+# build output
+docs/__src_site/dist
+
+# dependencies
+docs/__src_site/node_modules/
+docs/__src_site/.snowpack/
+
+# logs
+docs/__src_site/npm-debug.log*
+docs/__src_site/yarn-debug.log*
+docs/__src_site/yarn-error.log*
+
+# environment variables
+docs/__src_site/.env
+docs/__src_site/.env.production
+
+# macOS-specific files
+docs/__src_site/.DS_Store

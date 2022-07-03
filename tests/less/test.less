@@ -1,0 +1,7 @@
+@import (reference) "./_less-inherit";
+
+.buildInherit(
+  ".depth", 6,
+  '--var1: inherit(--var2) + "3"',
+  '--var2: calc(inherit(--var1) + inherit(--var2))'
+);

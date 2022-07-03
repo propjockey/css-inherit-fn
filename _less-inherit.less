@@ -1,0 +1,57 @@
+// * css-inherit-fn/_less-inherit.less
+// * BSD 2-Clause License
+// * Copyright (c) Jane Ori, PropJockey, 2022
+
+.buildDepthSelector(
+  @evenOdd, @sel, @maxDepth, @i: 1,
+  @full: ~"", @selX: @sel, @comma: ~""
+) when (@i <= @maxDepth) {
+  .buildDepthSelector(
+    ~"", @sel, @maxDepth, (@i + 2),
+    "@{full}@{comma}@{selX}:not(@{selX} @{sel})",
+    "@{selX} @{sel} @{sel}", ", "
+  );
+}
+.buildDepthSelector(
+  @evenOdd, @sel, @maxDepth, @i: 1,
+  @full: ~"", @selX: ~"", @comma: ~""
+) when (@evenOdd = "even") {
+  @selX: "@{sel} @{sel}";
+  @i: 2;
+  .buildDepthSelector(
+    ~"", @sel, @maxDepth, (@i + 2),
+    "@{full}@{comma}@{selX}:not(@{selX} @{sel})",
+    "@{selX} @{sel} @{sel}", ", "
+  );
+}
+.buildDepthSelector(
+  @evenOdd, @sel, @maxDepth, @i: 1,
+  @full: ~"", @selX: ~"", @comma: ~""
+) when (@i > @maxDepth) {
+  @escaped: e(@full);
+  @result: :where(@escaped);
+}
+
+.__inheritchainswap(@ioA, @ioB, @assignments) {
+  @argLen: length(@assignments);
+  each(range(1, @argLen, 1), {
+    @assignment: extract(@assignments, @value);
+    @var: e(replace(@assignment, "([^:]+):.*", "$1"));
+    @val: replace(@assignment, "[^:]+:\s*(.*)", "$1");
+    @inheritVal: replace(@val, "inherit\(--", "var(--@{ioA}", "g");
+    @{var}: e(@inheritVal);
+    @outVar: replace(@var, "--", "--@{ioB}", "");
+    @{outVar}: var(e(@var));
+  });
+}
+
+.buildInherit(@sel, @maxDepth, @assignments...) {
+  @odd: .buildDepthSelector("odd", @sel, @maxDepth)[@result];
+  @evn: .buildDepthSelector("even", @sel, @maxDepth)[@result];
+  @{odd} {
+    .__inheritchainswap("io1_", "io2_", @assignments);
+  }
+  @{evn} {
+    .__inheritchainswap("io2_", "io1_", @assignments);
+  }
+}
