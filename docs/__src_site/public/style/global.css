@@ -8,12 +8,12 @@
   --theme_1_light: #7300E6;
   --theme_2_light: #FB00C3;
   --theme_3_light: #FFFFFF;
-  --theme_4_light: 7 85% 61%;
+  --theme_4_light: #FFCB2A;
   --theme_0: var(--theme_0_light, #26004D);
   --theme_1: var(--theme_1_light, #7300E6);
   --theme_2: var(--theme_2_light, #FB00C3);
   --theme_3: var(--theme_3_light, #FFFFFF);
-  --theme_4: var(--theme_4_light, 332 82% 41%);
+  --theme_4: var(--theme_4_light, #FFCB2A);
 }
 
 /* Unfortunately, with the previous IACVT spec still implemented for most browsers, */
@@ -87,12 +87,13 @@ body {
 code {
   display: inline-block;
   font-family: monospace;
-  font-size: 0.8rem;
-  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1rem;
   padding: 0.5rem;
-  color: hsl(var(--theme_3));
-  background-color: hsl(var(--theme_1));
-  border: 1px solid hsl(var(--theme_4));
+  color: var(--theme_3);
+  background-color: var(--theme_0);
+  border: 2px solid var(--theme_1);
+  text-align: left;
 }
 code.console::before {
   content: "$ ";
@@ -101,5 +102,5 @@ code b {
   font-size: 1rem;
   font-weight: bold;
   white-space: nowrap;
-  color: hsl(var(--theme_0));
+  color: var(--theme_4);
 }

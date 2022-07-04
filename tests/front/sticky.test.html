@@ -1,0 +1,29 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../test.compiled.css" />
+</head>
+<body>
+  <div class="has-sticky" style="--sticky-add: 10px;">
+    <div class="has-sticky" style="--sticky-add: 20px;">
+      <div class="has-sticky" style="--sticky-add: 40px;">
+        <div class="has-sticky" style="--sticky-add: 0px;">
+          <div class="not-sticky" style="--sticky-add: 222px;">
+            <div class="has-sticky should-be-70" style="--sticky-add: 70px;">
+              <div class="has-sticky should-be-140" style="--sticky-add: 200px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const sb70 = document.querySelector(".should-be-70")
+    const sb140 = document.querySelector(".should-be-140")
+    const calc70 = window.getComputedStyle(sb70).getPropertyValue("--sticky")
+    const calc140 = window.getComputedStyle(sb140).getPropertyValue("--sticky")
+    const c70 = eval(calc70.replace(/calc|px/g, ""))
+    const c140 = eval(calc140.replace(/calc|px/g, ""))
+    sb140.innerHTML = `${c70} - ${c140}`
+    document.body.style.backgroundColor = ((c70 === 70) && (c140 === 140)) ? "green" : "red"
+  </script>
+</body>

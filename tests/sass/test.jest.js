@@ -2,6 +2,10 @@
 const util = require("util")
 const sass = require("node-sass")
 const sassRender = util.promisify(sass.render)
+const fs = require("fs")
+const helpers = require("../helpers.js")
+const normalizeWhitespace = helpers.normalizeWhitespace
+const expected = normalizeWhitespace(fs.readFileSync("./tests/test.compiled.css", "utf8"))
 
 const render = (options) => {
   return sassRender({
@@ -27,13 +31,12 @@ describe("_sass-inherit.scss", () => {
 })
 
 describe("test.scss", () => {
-  it("compiles to CSS", () => {
+  it("compiles to the correct CSS", async () => {
     return render({
       file: "./tests/sass/test.scss"
     }).then(output => {
       const built = output.css.toString()
-      console.log(built)
-      // expect(output.css.toString()).toEqual("")
+      expect(normalizeWhitespace(built)).toEqual(expected)
     })
   })
 })

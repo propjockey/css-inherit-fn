@@ -1,13 +1,31 @@
 @import "./_sass-inherit";
 
 @include buildInherit(
-  "div", 7,
-  '--var1: inherit(--var2) + "3"',
-  '--var2: calc(inherit(--var1) + inherit(--var2))'
+  '.hue',
+  12,
+  '--hue: calc(inherit(--hue, 0deg) + 30deg)'
 );
 
 @include buildInherit(
-  ".bob", 7,
-  '--var1: inherit(--var2) + "3"',
-  '--var2: calc(inherit(--var1) + inherit(--var2))'
+  '.depth',
+  12,
+  '--depth: calc(inherit(--depth, 0) + 1)'
+);
+
+@include buildInherit(
+  '.swap-hue',
+  24,
+  '--hue: calc(inherit(--hue, 0deg) + 30deg)',
+  '--bg-lightness: inherit(--fg-lightness, 50%)',
+  '--fg-lightness: inherit(--bg-lightness, 0%)',
+  '--font-size: calc(inherit(--font-size, 2rem) * 0.92)',
+  '--border-radius: calc(inherit(--border-radius, -50% / 24) + 50% / 24)'
+);
+
+@include buildInherit(
+  '.has-sticky',
+  6,
+  '--sticky-z: max(1, inherit(--sticky-z, 7) - 1)',
+  '--sticky-add: 0px',
+  '--sticky: calc(inherit(--sticky, 0px) + inherit(--sticky-add, 0px))'
 );

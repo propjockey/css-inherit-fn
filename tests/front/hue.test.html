@@ -1,0 +1,24 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../test.compiled.css" />
+</head>
+<body>
+  <div class="hue">
+    <div class="hue">
+      <div class="hue">
+        <div class="hue">
+          <div class="hue">
+            <div class="hue should-be-180">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const sb180 = document.querySelector(".should-be-180")
+    const calc = window.getComputedStyle(sb180).getPropertyValue("--hue")
+    const hue = eval(calc.replace(/calc|deg/g, ""))
+    sb180.innerHTML = hue
+    document.body.style.backgroundColor = hue === 180 ? "green" : "red"
+  </script>
+</body>

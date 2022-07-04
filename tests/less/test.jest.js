@@ -1,5 +1,8 @@
-const fs = require("fs")
 const less = require("less")
+const fs = require("fs")
+const helpers = require("../helpers.js")
+const normalizeWhitespace = helpers.normalizeWhitespace
+const expected = normalizeWhitespace(fs.readFileSync("./tests/test.compiled.css", "utf8"))
 
 describe("_less-inherit.less", () => {
   it("does not output CSS by itself", async () => {
@@ -12,13 +15,12 @@ describe("_less-inherit.less", () => {
 })
 
 describe("test.less", () => {
-  it("compiles to CSS", () => {
+  it("compiles to the correct CSS", async () => {
     return less.render(
       fs.readFileSync("./tests/less/test.less", "utf8")
     ).then(output => {
       const built = output.css.toString()
-      console.log(built)
-      // expect(output.css.toString()).toEqual("")
+      expect(normalizeWhitespace(built)).toEqual(expected)
     })
   })
 })

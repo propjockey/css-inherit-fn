@@ -1,9 +1,57 @@
-:root {
-  --main-color: #fff;
-  --background-color: #000;
+
+:where(.hue:not(.hue .hue), .hue .hue .hue:not(.hue .hue .hue .hue), .hue .hue .hue .hue .hue:not(.hue .hue .hue .hue .hue .hue), .hue .hue .hue .hue .hue .hue .hue:not(.hue .hue .hue .hue .hue .hue .hue .hue), .hue .hue .hue .hue .hue .hue .hue .hue .hue:not(.hue .hue .hue .hue .hue .hue .hue .hue .hue .hue), .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue:not(.hue .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue)) {
+  --hue: calc(var(--io1_hue, 0deg) + 30deg);
+  --io2_hue: var(--hue);
 }
-body {
-  color: var(--main-color);
-  background-color: var(--background-color);
-  font-size: xx-large;
+:where(.hue .hue:not(.hue .hue .hue), .hue .hue .hue .hue:not(.hue .hue .hue .hue .hue), .hue .hue .hue .hue .hue .hue:not(.hue .hue .hue .hue .hue .hue .hue), .hue .hue .hue .hue .hue .hue .hue .hue:not(.hue .hue .hue .hue .hue .hue .hue .hue .hue), .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue:not(.hue .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue), .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue:not(.hue .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue .hue)) {
+  --hue: calc(var(--io2_hue, 0deg) + 30deg);
+  --io1_hue: var(--hue);
+}
+:where(.depth:not(.depth .depth), .depth .depth .depth:not(.depth .depth .depth .depth), .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth), .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth), .depth .depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth), .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth)) {
+  --depth: calc(var(--io1_depth, 0) + 1);
+  --io2_depth: var(--depth);
+}
+:where(.depth .depth:not(.depth .depth .depth), .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth), .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth), .depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth), .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth), .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth:not(.depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth .depth)) {
+  --depth: calc(var(--io2_depth, 0) + 1);
+  --io1_depth: var(--depth);
+}
+:where(.swap-hue:not(.swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue)) {
+  --hue: calc(var(--io1_hue, 0deg) + 30deg);
+  --io2_hue: var(--hue);
+  --bg-lightness: var(--io1_fg-lightness, 50%);
+  --io2_bg-lightness: var(--bg-lightness);
+  --fg-lightness: var(--io1_bg-lightness, 0%);
+  --io2_fg-lightness: var(--fg-lightness);
+  --font-size: calc(var(--io1_font-size, 2rem) * 0.92);
+  --io2_font-size: var(--font-size);
+  --border-radius: calc(var(--io1_border-radius, -50% / 24) + 50% / 24);
+  --io2_border-radius: var(--border-radius);
+}
+:where(.swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue), .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue:not(.swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue .swap-hue)) {
+  --hue: calc(var(--io2_hue, 0deg) + 30deg);
+  --io1_hue: var(--hue);
+  --bg-lightness: var(--io2_fg-lightness, 50%);
+  --io1_bg-lightness: var(--bg-lightness);
+  --fg-lightness: var(--io2_bg-lightness, 0%);
+  --io1_fg-lightness: var(--fg-lightness);
+  --font-size: calc(var(--io2_font-size, 2rem) * 0.92);
+  --io1_font-size: var(--font-size);
+  --border-radius: calc(var(--io2_border-radius, -50% / 24) + 50% / 24);
+  --io1_border-radius: var(--border-radius);
+}
+:where(.has-sticky:not(.has-sticky .has-sticky), .has-sticky .has-sticky .has-sticky:not(.has-sticky .has-sticky .has-sticky .has-sticky), .has-sticky .has-sticky .has-sticky .has-sticky .has-sticky:not(.has-sticky .has-sticky .has-sticky .has-sticky .has-sticky .has-sticky)) {
+  --sticky-z: max(1, var(--io1_sticky-z, 7) - 1);
+  --io2_sticky-z: var(--sticky-z);
+  --sticky-add: 0px;
+  --io2_sticky-add: var(--sticky-add);
+  --sticky: calc(var(--io1_sticky, 0px) + var(--io1_sticky-add, 0px));
+  --io2_sticky: var(--sticky);
+}
+:where(.has-sticky .has-sticky:not(.has-sticky .has-sticky .has-sticky), .has-sticky .has-sticky .has-sticky .has-sticky:not(.has-sticky .has-sticky .has-sticky .has-sticky .has-sticky), .has-sticky .has-sticky .has-sticky .has-sticky .has-sticky .has-sticky:not(.has-sticky .has-sticky .has-sticky .has-sticky .has-sticky .has-sticky .has-sticky)) {
+  --sticky-z: max(1, var(--io2_sticky-z, 7) - 1);
+  --io1_sticky-z: var(--sticky-z);
+  --sticky-add: 0px;
+  --io1_sticky-add: var(--sticky-add);
+  --sticky: calc(var(--io2_sticky, 0px) + var(--io2_sticky-add, 0px));
+  --io1_sticky: var(--sticky);
 }

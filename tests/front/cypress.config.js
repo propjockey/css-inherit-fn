@@ -6,6 +6,14 @@ module.exports = defineConfig({
   viewportHeight: 300,
   e2e: {
     specPattern: "./tests/**/*.cy.js",
-    supportFile: false
-  },
+    supportFile: false,
+    setupNodeEvents(on, config) {
+      on('task', {
+        log (message) {
+          console.log(message)
+          return null
+        }
+      })
+    }
+  }
 })

@@ -1,7 +1,7 @@
 {
   "name": "css-inherit-fn",
-  "version": "0.0.1",
-  "description": "Sass and Less mixins to enable CSS --var: inherit(--var);",
+  "version": "1.0.0",
+  "description": "Sass and Less mixins to enable CSS --var: calc(inherit(--var) + 1);",
   "main": "css-inherit.js",
   "directories": {
     "test": "tests"

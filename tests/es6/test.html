@@ -1,0 +1,55 @@
+<script>
+  const exports = {}
+</script>
+<script src="../helpers.js"></script> // adds normalizeWhitespace to the global scope
+<script>
+  const waitForIt = fetch('../test.compiled.css')
+   .then(response => response.text())
+   .then(data => {
+     const style = document.createElement("style")
+     style.innerHTML = normalizeWhitespace(data)
+     style.id = "expected-css"
+     document.body.appendChild(style)
+   });
+</script>
+
+<script type="module">
+  import { buildInherit } from "../../css-inherit.js"
+  const style = document.createElement("style")
+  let built = buildInherit(
+    '.hue',
+    12,
+    '--hue: calc(inherit(--hue, 0deg) + 30deg)'
+  )
+  built += buildInherit(
+    '.depth',
+    12,
+    '--depth: calc(inherit(--depth, 0) + 1)'
+  )
+  built += buildInherit(
+    '.swap-hue',
+    24,
+    '--hue: calc(inherit(--hue, 0deg) + 30deg)',
+    '--bg-lightness: inherit(--fg-lightness, 50%)',
+    '--fg-lightness: inherit(--bg-lightness, 0%)',
+    '--font-size: calc(inherit(--font-size, 2rem) * 0.92)',
+    '--border-radius: calc(inherit(--border-radius, -50% / 24) + 50% / 24)'
+  )
+  built += buildInherit(
+    '.has-sticky',
+    6,
+    '--sticky-z: max(1, inherit(--sticky-z, 7) - 1)',
+    '--sticky-add: 0px',
+    '--sticky: calc(inherit(--sticky, 0px) + inherit(--sticky-add, 0px))'
+  )
+  style.innerHTML = normalizeWhitespace(built)
+  style.id = "built-result"
+  document.body.appendChild(style)
+
+  waitForIt.then(_ => {
+    const expectedCSS = document.getElementById("expected-css").innerHTML
+    const builtCSS = document.getElementById("built-result").innerHTML
+    const justDoItMyself = expectedCSS === builtCSS && (10000 === Math.min(10000, builtCSS.length))
+    document.body.style.backgroundColor = justDoItMyself ? "green" : "red"
+  })
+</script>

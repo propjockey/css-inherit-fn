@@ -1,0 +1,170 @@
+<script>
+  // event.target is awful in Safari so delagating these from the parent is a pita
+  window.tabClicked = el => {
+    const tabBar = el.parentNode
+    tabBar.setAttribute("data-tab", Array.from(tabBar.children).indexOf(el) + 1)
+  }
+  window.tabKeydownd = (el, ev) => {
+    const keyCode = ev && ev.keyCode
+    if (keyCode === 32 || keyCode === 13) { // space or enter
+      ev.preventDefault()
+      window.tabClicked(el)
+    }
+  }
+</script>
+
+<style>
+  [data-tab="1"] > :nth-child(1),
+  [data-tab="1"] + * > :nth-child(1),
+  [data-tab="2"] > :nth-child(2),
+  [data-tab="2"] + * > :nth-child(2),
+  [data-tab="3"] > :nth-child(3),
+  [data-tab="3"] + * > :nth-child(3),
+  [data-tab="4"] > :nth-child(4),
+  [data-tab="4"] + * > :nth-child(4) {
+    --active-tab: ;
+  }
+  [data-tab] { display: flex; gap: 0.5rem; padding-left: 0.5rem; }
+  [data-tab] > * {
+    cursor: pointer;
+    --aug-border: initial;
+    --aug-border-all: 1px;
+    --aug-border-bottom: 0px;
+    --aug-border-bg: var(--theme_0);
+    --aug-scoop-tl1: initial;
+    --aug-round-tl1: initial;
+    --aug-scoop-tl2: initial;
+    --aug-round-tl2: initial;
+    --aug-tl1: 0.5rem;
+    --aug-tl2: 0.5rem;
+    --aug-round-tr1: initial;
+    --aug-scoop-tr2: initial;
+    --aug-tr-extend2: calc(100% - 1rem);
+    --aug-tr1: 0.5rem;
+    --aug-tr2: 0.5rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    --op-active: var(--active-tab) 1;
+    opacity: var(--op-active, 0.6);
+    font-weight: bold;
+    --bgc-active: var(--active-tab) var(--theme_2);
+    background: var(--bgc-active, var(--theme_3));
+    position: relative;
+    --z-active: var(--active-tab) 20;
+    z-index: var(--z-active, 5);
+    --c-active: var(--active-tab) var(--theme_3);
+    color: var(--c-active, var(--theme_0));
+  }
+  [data-tab] > :where(:active, :focus) {
+    background: var(--bgc-active, var(--theme_1));
+    --c-active: var(--theme_3);
+    --z-active: 20;
+    opacity: 1;
+    --aug-border-bg: var(--theme_4);
+    outline-color: var(--theme_4);
+  }
+  [data-tab] + * {
+    margin-top: -1px;
+    border: 1px solid var(--theme_0);
+    background: var(--theme_2);
+    padding: 1rem;
+    position: relative;
+    z-index: 10;
+  }
+  [data-tab] + * > * {
+    --display-active: var(--active-tab) block;
+    display: var(--display-active, none);
+  }
+</style>
+
+<style>
+  .tab-bodies {
+    color: var(--theme_3);
+    text-align: left;
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  .tab-bodies a {
+    color: var(--theme_3);
+  }
+  h3 {
+    text-align: left;
+    font-size: 1.25rem;
+    margin: 1rem;
+  }
+</style>
+
+<h3 id="animated-hue-example">Hue += 30deg, animated at the root</h3>
+<div class="tabs" data-tab="1" data-augmented-ui-reset>
+  <label tabindex="0" onpointerdown="tabClicked(this)" onkeydown="tabKeydownd(this, event)" data-augmented-ui>Less</label>
+  <label tabindex="0" onpointerdown="tabClicked(this)" onkeydown="tabKeydownd(this, event)" data-augmented-ui>Sass</label>
+  <label tabindex="0" onpointerdown="tabClicked(this)" onkeydown="tabKeydownd(this, event)" data-augmented-ui>ES6 Module</label>
+  <label tabindex="0" onpointerdown="tabClicked(this)" onkeydown="tabKeydownd(this, event)" data-augmented-ui>Global JS</label>
+</div>
+<div class="tab-bodies">
+  <section>
+    <iframe height="600"
+      src="https://codepen.io/propjockey/embed/OJvVaZL/74924185e1dd93aa8474c85e0ca916c1?height=600&amp;default-tab=css,result&amp;theme-id=40148&amp;embed-version=2"
+      scrolling="no" frameborder="no" allowtransparency="true" loading="lazy" style="width: 100%;"
+    >
+    </iframe>
+  </section>
+  <section>
+    Sass cannot @import (or @use) mixins from external sources so no live demos. ;(<br>
+    Rest assured, <a href="https://github.com/propjockey/css-inherit-fn/tree/main/tests">Sass tests are passing</a>. In any case, here's what the Sass code would look like if you set this up locally:<br>
+    <code>
+      @import "/node_modules/css-inherit-fn/_sass-inherit";<br>
+      <br>
+      @include <b>buildInherit</b>(<br>
+      &nbsp;&nbsp;'.hue',<br>
+      &nbsp;&nbsp;12,<br>
+      &nbsp;&nbsp;'--hue: calc(<b>inherit</b>(--hue, 0deg) + 30deg)'<br>
+      );
+    </code><br>
+    The rest of the CSS and markup is the same across enviornments.
+  </section>
+  <section>
+    <iframe height="600"
+      src="https://codepen.io/propjockey/embed/39c0d639ff7d9f71b5753410d833b98b?height=600&amp;default-tab=html&amp;theme-id=40148&amp;embed-version=2"
+      scrolling="no" frameborder="no" allowtransparency="true" loading="lazy" style="width: 100%;"
+    >
+    </iframe>
+  </section>
+  <section>
+    <iframe height="600"
+      src="https://codepen.io/propjockey/embed/5f88a9f08a912e15009e6539cc85f935?height=600&amp;default-tab=html&amp;theme-id=40148&amp;embed-version=2"
+      scrolling="no" frameborder="no" allowtransparency="true" loading="lazy" style="width: 100%;"
+    >
+    </iframe>
+  </section>
+</div>
+<br>
+<br>
+<br>
+<h3 id="inherit-swap-example">Swapping FG/BG Lightness Values</h3>
+<a href="https://github.com/w3c/csswg-drafts/issues/2864#issuecomment-842398907">Swapping mentioned here</a><br>
+<br>
+<iframe height="600"
+  src="https://codepen.io/propjockey/embed/8560f8af32b185581d3a25c7afcd140e?height=600&amp;default-tab=css,result&amp;theme-id=40148&amp;embed-version=2"
+  scrolling="no" frameborder="no" allowtransparency="true" loading="lazy" style="width: 100%;"
+>
+</iframe>
+<br>
+<br>
+<br>
+<h3 id="inherit-sticky-situation-example">Auto Cumulative Nested Sticky Headers w/auto reverse z-index</h3>
+<a href="https://github.com/w3c/csswg-drafts/issues/2864#issuecomment-1171359859">Source of this idea</a><br>
+<br>
+<iframe height="600"
+  src="https://codepen.io/propjockey/embed/d3b8c72ecbad17c37d8f895585a3c390?height=600&amp;default-tab=css,result&amp;theme-id=40148&amp;embed-version=2"
+  scrolling="no" frameborder="no" allowtransparency="true" loading="lazy" style="width: 100%;"
+>
+</iframe>
+<br>
+<br>
+<br>
+<p>
+  Have an idea that would make a great example here?<br>
+  Please <a href="http://twitter.com/Jane0ri">send me a tweet or DM</a> for consideration!
+</p>

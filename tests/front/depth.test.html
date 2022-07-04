@@ -1,0 +1,24 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="../test.compiled.css" />
+</head>
+<body>
+  <div class="depth">
+    <div class="depth">
+      <div class="depth">
+        <div class="not-depth">
+          <div class="depth">
+            <div class="depth should-be-5">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const sb5 = document.querySelector(".should-be-5")
+    const depthCalc = window.getComputedStyle(sb5).getPropertyValue("--depth")
+    const depth = eval(depthCalc.replace(/calc/g, ""))
+    sb5.innerHTML = depth
+    document.body.style.backgroundColor = depth === 5 ? "green" : "red"
+  </script>
+</body>

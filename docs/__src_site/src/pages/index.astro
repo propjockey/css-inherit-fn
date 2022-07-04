@@ -4,29 +4,222 @@ import PJLink from "../components/PJLink.astro"
 import NPMLink from "../components/NPMLink.astro"
 import GitHubLink from "../components/GitHubLink.astro"
 import TwitterLink from "../components/TwitterLink.astro"
+import CSSInheritPlayground from "../components/CSSInheritPlayground.astro"
 ---
 <Layout title="css-inherit-fn mixins from PropJockey">
   <main>
-    <div aria-hidden="true" class="inlay-decoration" data-augmented-ui="inlay"></div>
-    <div aria-hidden="true" class="border-decoration" data-augmented-ui="border"></div>
-    <div class="logo-wrapper">
-      <img src="/favicon.png" alt="css-inherit-fn logo">
-    </div>
-    <h1>css-inherit-fn</h1>
-    <nav>
-      <PJLink />
-      <NPMLink />
-      <GitHubLink />
-      <TwitterLink />
-    </nav>
-    <p class="instructions">
-      --var: calc(inherit(--var, 0) + 1);<br>
-      Releasing soon!
-    </p>
+    <section>
+      <div aria-hidden="true" class="inlay-decoration" data-augmented-ui="inlay"></div>
+      <div aria-hidden="true" class="border-decoration" data-augmented-ui="border"></div>
+      <div class="logo-wrapper">
+        <img src="/favicon.png" alt="css-inherit-fn logo">
+      </div>
+      <h1>css-inherit-fn</h1>
+      <nav>
+        <PJLink />
+        <NPMLink />
+        <GitHubLink />
+        <TwitterLink />
+      </nav>
+      <p class="instructions">
+        Enables you to write CSS that can inherit and iterate on --vars with ZERO runtime JS.<br>
+        <code>--var: calc(inherit(--var, 0) + 1);</code><br>
+        Less and Sass `<b>buildInherit()</b>` mixins compile to vanilla CSS.<br>
+        <br>
+        Not using Less or Sass and still want to play? That's okay!<br>
+        Also included are options for a global JS function or an ES6 Module that expose the same `<b>buildInherit()</b>` function.<br>
+        <br>
+        Whatever your setup is, you can start inherit()ing CSS vars today 🎉<br>
+        <br>
+        <code class="console">npm install css-inherit-fn</code>
+      </p>
+    </section>
+    <br>
+    <section>
+      <div aria-hidden="true" class="inlay-decoration" data-augmented-ui="inlay"></div>
+      <div aria-hidden="true" class="border-decoration" data-augmented-ui="border"></div>
+      <h2 id="user-reach">User Reach</h2>
+      <p class="instructions">
+        At the time of writing, <b>css-inherit-fn</b> has <span class="user-reach">89.37%</span> global user reach.<br>
+        (According to data from caniuse.com) The limiting factors are:<br>
+        The <a href="https://caniuse.com/mdn-css_selectors_where">:where() selector (89.37%)</a>,<br>
+        followed closely by the <a href="https://caniuse.com/css-not-sel-list">Level 4 :not() selector (90.87%)</a>.
+      </p>
+    </section>
+    <br>
+    <section>
+      <div aria-hidden="true" class="inlay-decoration" data-augmented-ui="inlay"></div>
+      <div aria-hidden="true" class="border-decoration" data-augmented-ui="border"></div>
+      <h2 id="usage">Importing and Calling buildInherit()</h2>
+      <p class="instructions">
+        <code class="console">npm install css-inherit-fn</code><br>
+      </p>
+      <br>
+      <hr>
+      <br>
+      <p class="instructions instructions--alt">
+        <b id="usage-less">Using Less</b><br>
+        <code>
+          @import (reference) "/node_modules/css-inherit-fn/_less-inherit";<br>
+          <br>
+          <b>.buildInherit</b>(<br>
+          &nbsp;&nbsp;...<br>
+          );
+        </code>
+        Bonus: Since Less is awesome, you can skip the install for small projects and fun CodePen demos by importing directly from your favorite CDN:<br>
+        <code>
+          @import (reference) "https://unpkg.com/css-inherit-fn/_less-inherit.less";
+        </code>
+        Please <a href="http://twitter.com/Jane0ri">tweet @ me</a> if you use it in a CodePen! I'd love to see!<br>
+      </p>
+      <br>
+      <hr>
+      <br>
+      <p class="instructions instructions--alt">
+        <b id="usage-sass">Using Sass</b><br>
+        <code>
+          @import "/node_modules/css-inherit-fn/_sass-inherit";<br>
+          <br>
+          @include <b>buildInherit</b>(<br>
+          &nbsp;&nbsp;...<br>
+          );
+        </code>
+        Bogus: Sass cannot @import (or @use) mixins from external sources. ;(
+      </p>
+      <br>
+      <hr>
+      <br>
+      <p class="instructions instructions--alt">
+        <b id="usage-es6">Using ES6 Module</b><br>
+        <code>
+          &lt;script type="module"&gt;<br>
+          &nbsp;&nbsp;import &#123; <b>buildInherit</b> &#125; from "css-inherit-fn/css-inherit.js"<br>
+          &nbsp;&nbsp;const style = document.createElement("style")<br>
+          &nbsp;&nbsp;style.innerHTML = <b>buildInherit</b>(<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+          &nbsp;&nbsp;)<br>
+          &nbsp;&nbsp;document.head.appendChild(style)<br>
+          &lt;/script&gt;
+        </code>
+        Bonus: You could import directly from your favorite CDN instead of installing:<br>
+        <code>
+          import &#123; <b>buildInherit</b> &#125; from "https://unpkg.com/css-inherit-fn/css-inherit.js"
+        </code>
+      </p>
+      <br>
+      <hr>
+      <br>
+      <p class="instructions instructions--alt">
+        <b id="usage-global">Using a Global JS function</b><br>
+        <code>
+          &lt;script src="https://unpkg.com/css-inherit-fn/css-inherit.global.js"&gt;<br>
+          &nbsp;&nbsp;// adds "cssInherit" global variable with the "buildInherit" function attached<br>
+          &lt;/script&gt;<br>
+          &lt;script&gt;<br>
+          &nbsp;&nbsp;const style = document.createElement("style")<br>
+          &nbsp;&nbsp;style.innerHTML = <b>cssInherit.buildInherit</b>(<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+          &nbsp;&nbsp;)<br>
+          &nbsp;&nbsp;document.head.appendChild(style)<br>
+          &lt;/script&gt;
+        </code>
+      </p>
+    </section>
+    <br>
+    <section>
+      <div aria-hidden="true" class="inlay-decoration" data-augmented-ui="inlay"></div>
+      <div aria-hidden="true" class="border-decoration" data-augmented-ui="border"></div>
+      <h2 id="buildInherit-params">buildInherit() Parameters</h2>
+      <p class="instructions instructions--alt">
+        <b>buildInherit()</b> parameters are the same no matter what enviornment you're using it in.<br>
+        <br>
+        <b>1.</b> The first parameter is a string that takes a simple selector (such as a single ".className" or element tag like "div").<br>
+        (Technically it can be anything but you really should limit this to a simple selector.)<br>
+        This selector is the facilitator that connects ancestors to descendants.
+        Elements matching the selector do not have to be directly nested in each other for the hand-off inherit()ing to work.<br>
+        <br>
+        <b>2.</b> The second parameter is an intenger setting the maximum depth the selector will allow.<br>
+        For example, if our selector is '<b>.hi</b>', the max depth needed to inherit() in this chain is 4:<br>
+        <code>html > body<b>.hi</b> > main > section<b>.hi</b> > div<b>.hi</b> > p > span > i<b>.hi</b></code>
+        A value of 6 or 7 is probably sufficient for most uses, I wouldn't expect needing more than 16 unless you're doing something artistic/for fun.<br>
+        No matter what value though, buildInherit() compiles into two selectors (even vs odd nesting depth).<br>
+        <br>
+        <b>3.</b> The remaining parameters are any number of strings, one at a time, that assign a --css-var and might call `inherit()` to compute its value.<br>
+        For example:
+        <code>
+          (<br>
+          &nbsp;&nbsp;'.hue',<br>
+          &nbsp;&nbsp;12,<br>
+          &nbsp;&nbsp;'--hue: calc(inherit(--hue, 0deg) + 30deg)'<br>
+          )
+        </code>
+        or
+        <code>
+          (<br>
+          &nbsp;&nbsp;'.swap',<br>
+          &nbsp;&nbsp;6,<br>
+          &nbsp;&nbsp;'--bg: inherit(--fg, black)',<br>
+          &nbsp;&nbsp;'--fg: inherit(--bg, white)'<br>
+          )
+        </code>
+        Only vars assigned within the call to buildInherit() are available for inherit()ing, but they do not necessarily need to inherit in their own value:
+        <code>
+          (<br>
+          &nbsp;&nbsp;'.griddy',<br>
+          &nbsp;&nbsp;16,<br>
+          &nbsp;&nbsp;'--grandcontainer-width: inherit(--container-width, 100vw)',<br>
+          &nbsp;&nbsp;'--container-width: inherit(--width, 100vw)',<br>
+          &nbsp;&nbsp;'--width: calc(var(--container-width) * var(--portion, 1))'<br>
+          )<br>
+          <br>
+          ...<br>
+          <br>
+          .griddy.sm &#123; /* normal CSS, outside of the buildInherit call */<br>
+          &nbsp;&nbsp;--portion: 0.25;<br>
+          &#125;<br>
+          .griddy.md &#123;<br>
+          &nbsp;&nbsp;--portion: 0.333;<br>
+          &#125;<br>
+          .griddy.lg &#123;<br>
+          &nbsp;&nbsp;--portion: 0.5;<br>
+          &#125;<br>
+          .griddy.aspect16-9 &#123;<br>
+          &nbsp;&nbsp;height: calc(var(--width) / 16 * 9);<br>
+          &#125;<br>
+          .griddy<br>
+          &nbsp;&nbsp;--cqw: calc(var(--container-width) / 100);<br>
+          &nbsp;&nbsp;--ownw: calc(var(--width) / 100);<br>
+          &#125;<br>
+          .griddy.fullscreen &#123;<br>
+          &nbsp;&nbsp;--width: 90vw; /* .griddy descendants of .griddy.fullscreen will have a --container-width of 90vw */<br>
+          &#125;
+        </code>
+      </p>
+    </section>
+    <br>
+    <section style="padding-bottom: 6rem;">
+      <div aria-hidden="true" class="inlay-decoration" data-augmented-ui="inlay"></div>
+      <div aria-hidden="true" class="border-decoration" data-augmented-ui="border"></div>
+      <h2 id="live-examples">Playground Time!</h2>
+      <CSSInheritPlayground />
+    </section>
   </main>
 </Layout>
 
 <style>
+  .instructions--alt {
+    text-align: left;
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+  .instructions--alt code {
+    display: block;
+    margin: 0.5rem;
+  }
+  hr {
+    border: none;
+    border-bottom: 2px solid var(--theme_1);
+  }
   nav {
     display: flex;
     align-items: center;
@@ -59,8 +252,12 @@ import TwitterLink from "../components/TwitterLink.astro"
     fill: var(--theme_3);
   }
   h1 {
-    margin: 1rem 0;
+    font-size: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
+  }
+  h2 {
+    margin-bottom: 1rem;
   }
   .logo-wrapper {
     position: absolute;
@@ -75,14 +272,27 @@ import TwitterLink from "../components/TwitterLink.astro"
   .logo-wrapper img {
     width: 99%;
   }
+  .instructions {
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+  .user-reach {
+    font-size: 2rem;
+    color: var(--theme_2);
+  }
 
   main {
     margin: auto;
-    padding: 1.25em;
     width: var(--main-width);
     min-height: calc(100vh - 2rem);
     position: relative;
     isolation: isolate;
+  }
+  section {
+    padding: 3rem 1.25em;
+    position: relative;
+    margin-bottom: 2rem;
+    text-align: center;
   }
   .inlay-decoration,
   .border-decoration {
