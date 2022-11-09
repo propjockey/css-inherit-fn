@@ -11,9 +11,13 @@
     $i: 2;
   }
   @while $i <= $maxDepth {
+    $tail: ")";
+		@if $i < $maxDepth - 1 {
+			$tail: "), ";
+		}
     $full: $full + $selX + ":not(";
     $selX: $selX + " " + $sel;
-    $full: $full + $selX + "), ";
+    $full: $full + $selX + $tail;
     $selX: $selX + " " + $sel;
     $i: $i + 2;
   }
